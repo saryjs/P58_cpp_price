@@ -22,6 +22,9 @@ bool Price::init() {
 	product = { "Grided Copybook", 7.50f, 20, 10 };
 	product.save_to_file(file);
 
+	product = { "Ruler", 8.50f, 10, 5 };
+	product.save_to_file(file);
+
 	file.close();
 	return true;
 }
