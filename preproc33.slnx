@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="preproc33/preproc33.vcxproj" Id="0a99d126-7eac-47c2-83d0-1e620d46f4e5" />
+</Solution>
