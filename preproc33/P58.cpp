@@ -12,7 +12,7 @@ int main()
 
 	while (true) {
 		int choice;
-		std::cout << "Choice an action:\n"
+		std::cout << "Choose an action:\n"
 			<< "1: Init price\n"
 			<< "2: Load price\n"
 			<< "3: Show price\n"
