@@ -1,5 +1,6 @@
 #include "price.h"
 #include <iostream>
+#include <conio.h>
 
 bool Price::init() {
 	std::ofstream file(PRICE_FILENAME);
@@ -74,3 +75,21 @@ void Price::show() const {
 	}
 }
 
+void Price::show_pag() const {
+	if (first == NULL) {
+		std::cout << "Price is empty" << std::endl;
+		return;
+	}
+	ListNode* node = first;
+	size_t count = 0;
+	while (node) {
+		if (count % 2 == 0) {
+			std::cout << "Press any key to show: " << std::endl;
+			size_t key;
+			key = _getch();
+		}
+		std::cout << node->product.to_string() << std::endl;
+		node = node->next;
+		count += 1;
+	}
+}
