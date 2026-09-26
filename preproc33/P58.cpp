@@ -17,6 +17,7 @@ int main()
 			<< "2: Load price\n"
 			<< "3: Show price\n"
 			<< "4: Show price in 2s\n"
+			<< "5: Show sorted\n"
 			<< "0: Exit\n";
 
 		choice = _getch();
@@ -43,6 +44,8 @@ int main()
 		case 52:  // '4'
 			price->show_pag();
 			break;
+		case 53:  // '5'
+			price->show_price_asc();
 		case 48:  // '0'
 			return 0;
 		default:
