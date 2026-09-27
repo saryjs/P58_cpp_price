@@ -19,6 +19,8 @@ int main()
 			<< "4: Show price in 2s\n"
 			<< "5: Show ascending\n"
 			<< "6: Show descending\n"
+			<< "7: Show discount asc\n"
+			<< "8: Show discount desc\n"
 			<< "0: Exit\n";
 
 		choice = _getch();
@@ -50,6 +52,12 @@ int main()
 			break;
 		case 54:  // '6'
 			price->show_price_desc();
+			break;
+		case 55:  // '7'
+			price->show_discount_asc();
+			break;
+		case 56:  // '8'
+			price->show_discount_desc();
 			break;
 		case 48:  // '0'
 			return 0;
