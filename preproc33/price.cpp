@@ -94,6 +94,22 @@ void Price::show_pag() const {
 	}
 }
 
+void Price::_swap12() {
+	ListNode* tmp;
+	tmp = first->next;
+	first->next = tmp->next;
+	tmp->next = first;
+	first = tmp;
+}
+
+void Price::_swap23(ListNode* node) {
+	ListNode* tmp;
+	tmp = node->next;
+	node->next = tmp->next;
+	tmp->next = tmp->next->next;
+	node->next->next = tmp;
+}
+
 void Price::show_price_asc() {
 	// Сортування - переставлення неправильно впорядкованих елементів
 	// до тих пір, поки їх не стане (всі у правильному порядку)
@@ -120,18 +136,12 @@ void Price::show_price_asc() {
 		ListNode* node = first;
 		ListNode* tmp;
 		if (node->product.price > node->next->product.price) {
-			tmp = first->next;
-			first->next = tmp->next; // n1->next = n3
-			tmp->next = first;		 // n2->next = n1
-			node = first = tmp;
+			_swap12();
 			is_ordered = false;
 		}
 		while (node->next->next) {
 			if (node->next->product.price > node->next->next->product.price) {
-				tmp = node->next;				// n2
-				node->next = tmp->next;         // n1->next = n3
-				tmp->next = tmp->next->next;	// n2->next = n4
-				node->next->next = tmp;			// n3->next = n2
+				_swap23(node);
 				is_ordered = false;
 			}
 			node = node->next;
@@ -155,18 +165,12 @@ void Price::show_price_desc() {
 		ListNode* node = first;
 		ListNode* tmp;
 		if (node->product.price < node->next->product.price) {
-			tmp = first->next;
-			first->next = tmp->next; // n1->next = n3
-			tmp->next = first;		 // n2->next = n1
-			node = first = tmp;
+			_swap12();
 			is_ordered = false;
 		}
 		while (node->next->next) {
 			if (node->next->product.price < node->next->next->product.price) {
-				tmp = node->next;				// n2
-				node->next = tmp->next;         // n1->next = n3
-				tmp->next = tmp->next->next;	// n2->next = n4
-				node->next->next = tmp;			// n3->next = n2
+				_swap23(node);
 				is_ordered = false;
 			}
 			node = node->next;

@@ -16,4 +16,9 @@ struct Price {
 	void show_pag() const;
 	void show_price_asc();
 	void show_price_desc();
+
+private: // приваті методи - доступні лише для інших методів
+	void _swap12();
+	void _swap23(ListNode* node);
+
 };
