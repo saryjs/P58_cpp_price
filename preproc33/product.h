@@ -24,6 +24,7 @@ struct Product {
 	std::string name = "";
 	float price = 0.0f;
 	int stock = 0;
+	size_t popul = 0;
 	int discount_percent = 0;
 
 	bool load_from_file(std::ifstream& file);

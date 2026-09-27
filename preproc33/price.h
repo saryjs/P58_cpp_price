@@ -18,6 +18,7 @@ struct Price {
 	void show_price_desc();
 	void show_discount_asc();
 	void show_discount_desc();
+	void show_popularity();
 
 private: // приваті методи - доступні лише для інших методів
 	void _swap12();

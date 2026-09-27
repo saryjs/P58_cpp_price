@@ -8,22 +8,23 @@ bool Price::init() {
 		std::cout << "File open error";
 		return false;
 	}
-	Product product = { "Black Pencil", 14.95f, 20, 0 };
+	// name price stock popularity discount
+	Product product = { "Black Pencil", 14.95f, 21, 10, 0 };
 	product.save_to_file(file);
 
-	product = { "Blue Pen", 19.95f, 25, 5 };
+	product = { "Blue Pen", 19.95f, 25, 19, 5 };
 	product.save_to_file(file);
 
-	product = { "Green Whiteboard Marker", 17.50f, 10, 10 };
+	product = { "Green Whiteboard Marker", 17.50f, 23, 16, 10 };
 	product.save_to_file(file);
 
-	product = { "Lined Copybook", 7.50f, 20, 10 };
+	product = { "Lined Copybook", 7.50f, 20, 45, 10 };
 	product.save_to_file(file);
 
-	product = { "Grided Copybook", 7.50f, 20, 10 };
+	product = { "Grided Copybook", 7.50f, 20, 54, 10 };
 	product.save_to_file(file);
 
-	product = { "Ruler", 8.50f, 10, 5 };
+	product = { "Ruler", 8.50f, 10, 20, 5 };
 	product.save_to_file(file);
 
 	file.close();
@@ -239,6 +240,35 @@ void Price::show_discount_desc() {
 		}
 		while (node->next->next) {
 			if (node->next->product.discount_percent < node->next->next->product.discount_percent) {
+				_swap23(node);
+				is_ordered = false;
+			}
+			node = node->next;
+		}
+	} while (!is_ordered);
+	show();
+}
+
+void Price::show_popularity() {
+	if (first == NULL) {
+		std::cout << "Price is empty" << std::endl;
+		return;
+	}
+	if (first->next == NULL) {
+		std::cout << first->product.to_string() << std::endl;
+		return;
+	}
+	bool is_ordered;
+	do {
+		is_ordered = true;
+		ListNode* node = first;
+		ListNode* tmp;
+		if (node->product.popul < node->next->product.popul) {
+			_swap12();
+			is_ordered = false;
+		}
+		while (node->next->next) {
+			if (node->next->product.popul < node->next->next->product.popul) {
 				_swap23(node);
 				is_ordered = false;
 			}
