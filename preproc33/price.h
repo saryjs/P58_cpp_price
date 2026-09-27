@@ -15,4 +15,5 @@ struct Price {
 	void show() const;
 	void show_pag() const;
 	void show_price_asc();
+	void show_price_desc();
 };

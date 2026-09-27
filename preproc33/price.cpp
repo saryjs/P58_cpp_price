@@ -118,31 +118,58 @@ void Price::show_price_asc() {
 	do {
 		is_ordered = true;
 		ListNode* node = first;
+		ListNode* tmp;
 		if (node->product.price > node->next->product.price) {
-			// f
-			// [p1|n]->[p2|n]->[p3|n]
-			// 
-			//	------>f
-			//         [p2|n]
-			//    <------/
-			// [p1|n]--------->[p3|n]
-			ListNode* tmp = first->next;
-			first->next = first->next->next; // p1.next = p3 (p2.next)
-			node->next->next = first; // p2.next = p1
-			first = tmp; // ---->f
-			node = first;
+			tmp = first->next;
+			first->next = tmp->next; // n1->next = n3
+			tmp->next = first;		 // n2->next = n1
+			node = first = tmp;
 			is_ordered = false;
 		}
 		while (node->next->next) {
-			ListNode* tmp = node->next; // tmp = p2
 			if (node->next->product.price > node->next->next->product.price) {
-				// неправильний порядок
-				node->next = node->next->next; // p1.next = p3
-				tmp->next = tmp->next->next; // p2.next = p3.next
-				tmp->next->next = tmp; // p3.next = p2;
+				tmp = node->next;				// n2
+				node->next = tmp->next;         // n1->next = n3
+				tmp->next = tmp->next->next;	// n2->next = n4
+				node->next->next = tmp;			// n3->next = n2
 				is_ordered = false;
 			}
-			node = tmp; // переходимо до наступного
+			node = node->next;
+		}
+	} while (!is_ordered);
+	show();
+}
+
+void Price::show_price_desc() {
+	if (first == NULL) {
+		std::cout << "Price is empty" << std::endl;
+		return;
+	}
+	if (first->next == NULL) {
+		std::cout << first->product.to_string() << std::endl;
+		return;
+	}
+	bool is_ordered;
+	do {
+		is_ordered = true;
+		ListNode* node = first;
+		ListNode* tmp;
+		if (node->product.price < node->next->product.price) {
+			tmp = first->next;
+			first->next = tmp->next; // n1->next = n3
+			tmp->next = first;		 // n2->next = n1
+			node = first = tmp;
+			is_ordered = false;
+		}
+		while (node->next->next) {
+			if (node->next->product.price < node->next->next->product.price) {
+				tmp = node->next;				// n2
+				node->next = tmp->next;         // n1->next = n3
+				tmp->next = tmp->next->next;	// n2->next = n4
+				node->next->next = tmp;			// n3->next = n2
+				is_ordered = false;
+			}
+			node = node->next;
 		}
 	} while (!is_ordered);
 	show();
